@@ -42,21 +42,23 @@
                     android:id="@+id/ClanName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Eastern Tigers"
+                    android:text="@string/loading"
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
                 <TextView
                     android:id="@+id/ClanPosition"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="#1 in Singapore"
+                    android:text="@string/loading"
+
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
                 <TextView
                     android:id="@+id/ClanMemberCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10 members"
+                    android:text="@string/loading"
+
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
             </LinearLayout>
 
@@ -100,7 +102,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <TextView

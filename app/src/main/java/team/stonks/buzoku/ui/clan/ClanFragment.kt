@@ -23,6 +23,8 @@ class ClanFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    var layout: View? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -36,12 +38,18 @@ class ClanFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val layout = inflater.inflate(R.layout.fragment_clan, container, false)
+        layout = inflater.inflate(R.layout.fragment_clan, container, false)
 
         // These TextViews can be programmatically changed before returning the view to be rendered
-        val clanName: TextView = layout.findViewById(R.id.ClanName)
-        val clanPosition: TextView = layout.findViewById(R.id.ClanPosition)
-        val clanMemberCount: TextView = layout.findViewById(R.id.ClanMemberCount)
+        val clanName: TextView? = layout?.findViewById(R.id.ClanName)
+        val clanPosition: TextView? = layout?.findViewById(R.id.ClanPosition)
+        val clanMemberCount: TextView? = layout?.findViewById(R.id.ClanMemberCount)
+
+        ClanService().getClan("hello") {
+            clanName?.text = it.name
+            clanPosition?.text = "#1 in Singapore"
+            clanMemberCount?.text = "${it.numberOfMembers} members"
+        }
 
         return layout
     }
