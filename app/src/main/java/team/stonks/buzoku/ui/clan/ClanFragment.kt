@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import team.stonks.buzoku.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -35,7 +36,14 @@ class ClanFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_clan, container, false)
+        val layout = inflater.inflate(R.layout.fragment_clan, container, false)
+
+        // These TextViews can be programmatically changed before returning the view to be rendered
+        val clanName: TextView = layout.findViewById(R.id.ClanName)
+        val clanPosition: TextView = layout.findViewById(R.id.ClanPosition)
+        val clanMemberCount: TextView = layout.findViewById(R.id.ClanMemberCount)
+
+        return layout
     }
 
     companion object {
