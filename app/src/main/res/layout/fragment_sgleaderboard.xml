@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.leaderboard.LeaderboardFragment"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SG Leaderboard"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:layout_marginBottom="100px"
+        android:layout_marginTop="300px"
+        android:layout_marginLeft="10dp"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_bookmark_24" />
+
+        <ImageView
+            android:id="@+id/image1"
+            android:layout_marginLeft="40dp"
+            android:layout_width="100px"
+            android:layout_height="100px"
+            android:scaleType="center"
+            android:background="@drawable/img" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Eastern Tigers"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="50"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:layout_marginLeft="225px"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_bookmark_24" />
+
+        <ImageView
+            android:id="@+id/image2"
+            android:layout_marginLeft="40dp"
+            android:layout_width="100px"
+            android:layout_height="100px"
+            android:scaleType="center"
+            android:background="@drawable/img" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Southern Penguins"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="40"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:layout_marginLeft="150px"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_bookmark_24" />
+
+        <ImageView
+            android:id="@+id/image3"
+            android:layout_marginLeft="40dp"
+            android:layout_width="100px"
+            android:layout_height="100px"
+            android:scaleType="center"
+            android:background="@drawable/img" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="werfwetgrtxvb"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="30"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:layout_marginLeft="225px"/>
+    </LinearLayout>
+
+</LinearLayout>
