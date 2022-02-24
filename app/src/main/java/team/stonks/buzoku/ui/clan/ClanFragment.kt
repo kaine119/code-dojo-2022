@@ -73,7 +73,7 @@ class ClanFragment : Fragment() {
 
         if (clanLeaderboardTitle != null && clanLeaderboardCard != null) {
             clanLeaderboardCard.setOnClickListener {
-                val fragment = LeaderboardFragment.newInstance("Your Clan", mapOf())
+                val fragment = LeaderboardFragment.newInstance("Your Clan", listOf(Pair(89.0f, "Europe")))
                 parentFragmentManager.commit {
 //                    addSharedElement(clanLeaderboardTitle, "leaderboardTitle")
                     replace(R.id.nav_host_fragment_content_main, fragment)
@@ -84,7 +84,7 @@ class ClanFragment : Fragment() {
 
         if (countryLeaderboardTitle != null && countryLeaderboardCard != null) {
             countryLeaderboardCard.setOnClickListener {
-                val fragment = LeaderboardFragment.newInstance("Clans in Singapore", mapOf())
+                val fragment = LeaderboardFragment.newInstance("Clans in Singapore", listOf(Pair(89.0f, "Europe")))
                 parentFragmentManager.commit {
 //                    addSharedElement(countryLeaderboardTitle, "countryLeaderboardTitle")
                     replace(R.id.nav_host_fragment_content_main, fragment)
