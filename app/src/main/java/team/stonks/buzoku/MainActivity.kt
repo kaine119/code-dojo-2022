@@ -1,5 +1,6 @@
 package team.stonks.buzoku
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import team.stonks.buzoku.databinding.ActivityMainBinding
+import team.stonks.buzoku.ui.promptHelpRequest.PromptHelpRequestService
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,6 +42,10 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         //endregion
+
+        // Start the listener service
+        val intent = Intent(this, PromptHelpRequestService::class.java)
+        startForegroundService(intent)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
