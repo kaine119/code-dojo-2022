@@ -1,6 +1,6 @@
 package team.stonks.buzoku.leaderboards
 
-class Clan(val name: String, val members: ArrayList<ClanMember> = arrayListOf()) {
+class Clan(val name: String, val score: Double, val members: ArrayList<ClanMember> = arrayListOf()) {
     var numberOfMembers = members.size
 
     var total = 0
