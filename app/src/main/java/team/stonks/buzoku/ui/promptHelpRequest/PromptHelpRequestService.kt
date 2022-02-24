@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Handler
 import android.os.IBinder
 import team.stonks.buzoku.R
+import team.stonks.buzoku.helpRequests.Parcel
 
 class PromptHelpRequestService : Service() {
     override fun onBind(p0: Intent?): IBinder? {
@@ -33,30 +34,30 @@ class PromptHelpRequestService : Service() {
             .build()
         startForeground(1000001, notification)
 
-        // TODO: test
-        val handler = Handler()
-        handler.postDelayed({
-            sendRequestNotification("test!")
-        }, 1000)
+        // TODO: wire up network code here
+        // sample code here fires off the notification 1 second after the service is started
+//        val handler = Handler()
+//        handler.postDelayed({
+//            sendRequestNotification("test!", "Bennett")
+//        }, 1000)
 
         return super.onStartCommand(intent, flags, startId)
     }
 
-    fun sendRequestNotification(text: String) {
+    fun sendRequestNotification(parcels: String, requesterName: String) {
         val promptIntent = Intent(this, PromptHelpRequestActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            putExtra("ParcelsToPickUp", parcels)
         }
 
         val pendingIntent = PendingIntent.getActivity(
             this, 0, promptIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-
-
         val nm = (getSystemService(NOTIFICATION_SERVICE) as NotificationManager)
         val notification: Notification = Notification.Builder(this, "101")
-            .setContentTitle(text)
-            .setContentText(text)
+            .setContentTitle("$requesterName is in trouble!")
+            .setContentText("Tap to see if you can help")
             .setSmallIcon(R.drawable.ic_menu_camera)
             .setContentIntent(pendingIntent)
             .build()

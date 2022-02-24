@@ -7,128 +7,11 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="8dp"
-            android:text="Address &amp; Order No."
-            android:textStyle="bold"
-            android:textSize="16dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="313 Somerset Rd, #04-01"
-            android:textStyle="bold"
-            android:textSize="18dp"
-            android:textColor="@color/black"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="NV12345678"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:layout_marginBottom="10dp"/>
-
-        <View
-            android:id="@+id/SplitLine_hor1"
-            android:layout_width="match_parent"
-            android:layout_height= "2dp"
-            android:background="#C0C0C0" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Mandarin Gallery, #01-01"
-            android:textStyle="bold"
-            android:textSize="18dp"
-            android:textColor="@color/black"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="NV54395237"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:layout_marginBottom="10dp"/>
-
-        <View
-            android:id="@+id/SplitLine_hor2"
-            android:layout_width="match_parent"
-            android:layout_height= "2dp"
-            android:background="#C0C0C0" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="The Orchard Residences, #12-31"
-            android:textStyle="bold"
-            android:textSize="18dp"
-            android:textColor="@color/black"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="NV93728493"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:layout_marginBottom="10dp"/>
-
-        <View
-            android:id="@+id/SplitLine_hor4"
-            android:layout_width="match_parent"
-            android:layout_height= "2dp"
-            android:background="#C0C0C0" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="The Orchard Residences, #08-24"
-            android:textStyle="bold"
-            android:textSize="18dp"
-            android:textColor="@color/black"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="NV46743259"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:layout_marginBottom="10dp"/>
-
-        <View
-            android:id="@+id/SplitLine_hor3"
-            android:layout_width="match_parent"
-            android:layout_height= "2dp"
-            android:background="#C0C0C0" />
-    </LinearLayout>
+        android:id="@+id/parcelReceiverRecyclerView"
+        />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -142,14 +25,13 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="25dp"
+            android:padding="24dp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="You have"
-                android:textStyle="bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>
 
             <TextView
@@ -157,7 +39,8 @@
                 android:layout_height="wrap_content"
                 android:text="15"
                 android:textStyle="bold"
-                android:textColor="#C5062A"
+                android:id="@+id/promptExistingCount"
+                android:textColor="@color/nvred_normal"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                 android:layout_gravity="center"/>
 
@@ -172,20 +55,20 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="25dp"
+            android:padding="24dp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="They are giving"
-                android:textStyle="bold"
+                android:text="Receiving"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                 android:gravity="center"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/promptReceivingCount"
                 android:text="4"
                 android:textStyle="bold"
                 android:textColor="#C5062A"
@@ -221,6 +104,7 @@
             android:background="@color/black"/>
 
         <Button
+            android:id="@+id/btnIgnorePrompt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
