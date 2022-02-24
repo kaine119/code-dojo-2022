@@ -79,6 +79,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <Button
+        android:id="@+id/btn_request_help"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="16dp"
@@ -88,8 +89,11 @@
 
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardClanLeaderboard"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -99,10 +103,11 @@
             android:background="#f5f5f5">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/txtClanLeaderboardTitle"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Clan Leaderboard"
-                android:textAppearance="?attr/textAppearanceHeadline6" />
+                android:text="Your Clan"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
 
             <LinearLayout
@@ -177,6 +182,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardCountryLeaderboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="16dp">
@@ -189,10 +195,11 @@
             android:background="#f5f5f5">
 
             <TextView
+                android:id="@+id/txtCountryLeaderboardTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Clan Leaderboard"
-                android:textAppearance="?attr/textAppearanceHeadline6" />
+                android:text="Clans across Singapore"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
 
             <LinearLayout
