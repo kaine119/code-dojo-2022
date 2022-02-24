@@ -18,7 +18,8 @@ Questions:
 Prescribed routes for drivers:
 Bug/ parcel wrongly allocated to driver
 
-Routing service is a separate service system calls that tries to automate and optimise the generation of the route. Travelling Salesman Problem: takes long to compute and difficult. Traffic information, maps of routes, timeslots of parcels used as parameters to produce the routes of deliveries for each driver.
+Routing service is a separate service system calls that tries to automate and optimise the generat
+ion of the route. Travelling Salesman Problem: takes long to compute and difficult. Traffic information, maps of routes, timeslots of parcels used as parameters to produce the routes of deliveries for each driver.
 
 Failed parcel rate: 5-10%
 Multiple reasons for failures: different categories to process:

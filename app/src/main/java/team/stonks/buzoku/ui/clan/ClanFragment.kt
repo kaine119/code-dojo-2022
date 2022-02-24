@@ -11,6 +11,11 @@ import android.widget.TextView
 import team.stonks.buzoku.R
 import team.stonks.buzoku.ui.requestForHelp.RequestForHelpActivity
 
+
+// Instantiate the RequestQueue.
+
+
+// Request a string response from the provided URL.
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
