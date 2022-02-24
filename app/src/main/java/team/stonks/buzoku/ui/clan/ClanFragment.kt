@@ -55,12 +55,11 @@ class ClanFragment : Fragment() {
         val clanPosition: TextView? = layout?.findViewById(R.id.ClanPosition)
         val clanMemberCount: TextView? = layout?.findViewById(R.id.ClanMemberCount)
 
-        this.getContext()?.let {
-            ClanService().getClan("hello", it) {
-                clanName?.text = it.name
-                clanPosition?.text = "#1 in Singapore"
-                clanMemberCount?.text = "${it.numberOfMembers} members"
-            }
+
+        ClanService().getClan("Eastern Tigers", requireContext()) {
+            clanName?.text = it.name
+            clanPosition?.text = "#1 in Singapore"
+            clanMemberCount?.text = "${it.numberOfMembers} members"
         }
 
         return layout

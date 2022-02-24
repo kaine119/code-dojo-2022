@@ -15,37 +15,29 @@ class ClanService {
      * @param id: The ID of the clan to get.
      * @param callback: The callback to call with the Clan object, once the network call is done.
      */
-    fun getClan(clan_name: String, context : Context, callback: (Clan) -> Unit) {
+    fun getClan(clan_name: String, context: Context, callback: (Clan) -> Unit) {
 
         val queue = Volley.newRequestQueue(context)
         val url = "https://ninja-van-stonks.uc.r.appspot.com/calc_clan_scores/$clan_name"
         val request = JsonObjectRequest(
             Request.Method.GET, url, null,
             { response ->
-                Log.e("DEBUG", "request")
-
                 val clanScore = response.getDouble("clanScore")
-                   val members = response.getJSONObject("driver_rankings")
-                   var clanMembers = arrayListOf<ClanMember>()
-                   val memberKeys = members.names()
-                   for (i in 0..members.length()) {
-                       val key = memberKeys.getInt(i)
-                       val name = members.getString(key.toString())
-                       clanMembers.add(ClanMember(name, key))
-                   }
-                   val clan = Clan(clan_name, clanScore, clanMembers)
-                   Log.e("DEBUG", "CLAN $clan $clanMembers")
-               }
-            ,
+                val members = response.getJSONObject("drivers_rankings")
+                var clanMembers = arrayListOf<ClanMember>()
+                val memberKeys = members.keys()
+                for (key in memberKeys) {
+                    val name = members.get(key).toString()
+                    clanMembers.add(ClanMember(name, key.toInt()))
+                }
+                val clan = Clan(clan_name, clanScore, clanMembers)
+                callback(clan)
+                Log.e("DEBUG", "CLAN $clan $clanMembers")
+            },
             { error ->
                 error.printStackTrace()
             }
         )
-        val mockArray = arrayListOf<ClanMember>(
-            ClanMember("Samuel", 80),
-            ClanMember("Dan", 20)
-        )
-        callback(Clan("Eastern Tigers", 69.0,mockArray))
         queue.add(request)
 
     }
