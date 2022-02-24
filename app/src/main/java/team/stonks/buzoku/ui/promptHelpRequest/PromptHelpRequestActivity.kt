@@ -12,9 +12,8 @@ import android.widget.TextView
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import team.stonks.buzoku.R
-import team.stonks.buzoku.databinding.ActivityMainBinding
-import team.stonks.buzoku.databinding.ActivityPromptRequestBinding
 import team.stonks.buzoku.helpRequests.Parcel
 
 class ParcelListAdapter(var parcelList: List<Parcel>) :
@@ -34,8 +33,11 @@ class ParcelListAdapter(var parcelList: List<Parcel>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val parcel = parcelList[position]
-        holder.parcelTrackingNumberText.text = parcel.trackingNumber
-        holder.parcelAddressText.text = parcel.destination
+        parcel.getInfo {
+            holder.parcelTrackingNumberText.text = parcel.trackingNumber
+            holder.parcelAddressText.text = parcel.address
+        }
+
     }
 
     override fun getItemCount() = parcelList.size
@@ -50,26 +52,29 @@ class PromptHelpRequestActivity : AppCompatActivity() {
             throw IllegalArgumentException("Activity should be called with the ParcelsToPickUp extra")
         }
 
-        // TODO: receive a JSON string from the service and parse it, then display parcels
-        Log.d("PromptHelpRequest", "${intent.getStringExtra("ParcelsToPickUp")}")
-
-        //region Attach adapter to RecyclerList
-        val parcels = listOf(
-            Parcel("NV2001101", "313 Somerset Rd"),
-            Parcel("AMZ234512", "500 Airport Rd")
+        val parcelIDs = Gson().fromJson<List<String>>(
+            intent.getStringExtra("ParcelsToPickUp"),
+            List::class.java
         )
+        val parcels = parcelIDs.map { Parcel(it) }
 
-        // Update these two number fields when the selection set is updated.
+        val requesterName = intent.getStringExtra("RequesterName")
+        val lat = intent.getStringExtra("RequesterLat")
+        val lng = intent.getStringExtra("RequesterLng")
+        val requesterId = intent.getStringExtra("RequesterId")
 
+        // Setup RecyclerView
         val parcelListAdapter = ParcelListAdapter(parcels)
         findViewById<RecyclerView>(R.id.parcelReceiverRecyclerView).apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
             adapter = parcelListAdapter
         }
+
+        // Update text fields on the view
+        findViewById<TextView>(R.id.requestPromptTitleText).text = "$requesterName needs help!"
         findViewById<TextView>(R.id.promptExistingCount).text = 10.toString()
         findViewById<TextView>(R.id.promptReceivingCount).text = parcels.size.toString()
-        //endregion
 
         findViewById<Button>(R.id.btnIgnorePrompt).setOnClickListener {
             finish()

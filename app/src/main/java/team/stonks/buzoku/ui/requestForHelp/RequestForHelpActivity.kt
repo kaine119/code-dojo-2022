@@ -35,8 +35,11 @@ class ParcelListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val parcel = parcelList[position]
-        holder.parcelTrackingNumberText.text = parcel.value.trackingNumber
-        holder.parcelAddressText.text = parcel.value.destination
+        parcel.value.getInfo {
+            holder.parcelTrackingNumberText.text = parcel.value.trackingNumber
+            holder.parcelAddressText.text = parcel.value.address
+        }
+
         holder.parcelSelectedCheckBox.isSelected = parcel.selected
 
         holder.itemView.setOnClickListener {
@@ -62,8 +65,8 @@ class RequestForHelpActivity : AppCompatActivity() {
 
         //region Attach adapter to RecyclerList
         val parcels = listOf(
-            Parcel("NV2001101", "313 Somerset Rd"),
-            Parcel("AMZ234512", "500 Airport Rd")
+            Parcel("NLSGD298572184"),
+            Parcel("SHPM24495818742")
         )
         val parcelModels = parcels.map { SelectableParcel(it, false) }
 
@@ -103,7 +106,7 @@ class RequestForHelpActivity : AppCompatActivity() {
             // TODO: find a less hacky dropdown! This is really jank
             val pickupSelection = (pickupSelector.editText)?.text.toString()
 
-           RequestForHelpService().submitRequest(selectedParcels, pickupSelection)
+            RequestForHelpService().submitRequest(selectedParcels, pickupSelection)
         }
     }
 }

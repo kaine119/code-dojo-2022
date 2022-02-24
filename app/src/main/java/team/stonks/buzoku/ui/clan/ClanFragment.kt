@@ -8,7 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.view.ViewCompat
+import androidx.fragment.app.commit
+import com.google.android.material.card.MaterialCardView
+import com.google.android.material.transition.MaterialElevationScale
 import team.stonks.buzoku.R
+import team.stonks.buzoku.ui.leaderboard.LeaderboardFragment
 import team.stonks.buzoku.ui.requestForHelp.RequestForHelpActivity
 
 
@@ -60,11 +65,40 @@ class ClanFragment : Fragment() {
         val clanPosition: TextView? = layout?.findViewById(R.id.ClanPosition)
         val clanMemberCount: TextView? = layout?.findViewById(R.id.ClanMemberCount)
 
-        ClanService().getClan("hello") {
+
+        ClanService().getClan("Eastern Tigers", requireContext()) {
             clanName?.text = it.name
             clanPosition?.text = "#1 in Singapore"
             clanMemberCount?.text = "${it.numberOfMembers} members"
         }
+
+        val clanLeaderboardTitle: TextView? = layout?.findViewById(R.id.txtClanLeaderboardTitle)
+        val clanLeaderboardCard: MaterialCardView? = layout?.findViewById(R.id.cardClanLeaderboard)
+        val countryLeaderboardTitle: TextView? = layout?.findViewById(R.id.txtCountryLeaderboardTitle)
+        val countryLeaderboardCard: MaterialCardView? = layout?.findViewById(R.id.cardCountryLeaderboard)
+
+        if (clanLeaderboardTitle != null && clanLeaderboardCard != null) {
+            clanLeaderboardCard.setOnClickListener {
+                val fragment = LeaderboardFragment.newInstance("Your Clan", listOf(Pair(89.0f, "Europe")))
+                parentFragmentManager.commit {
+//                    addSharedElement(clanLeaderboardTitle, "leaderboardTitle")
+                    replace(R.id.nav_host_fragment_content_main, fragment)
+                    addToBackStack(null)
+                }
+            }
+        }
+
+        if (countryLeaderboardTitle != null && countryLeaderboardCard != null) {
+            countryLeaderboardCard.setOnClickListener {
+                val fragment = LeaderboardFragment.newInstance("Clans in Singapore", listOf(Pair(89.0f, "Europe")))
+                parentFragmentManager.commit {
+//                    addSharedElement(countryLeaderboardTitle, "countryLeaderboardTitle")
+                    replace(R.id.nav_host_fragment_content_main, fragment)
+                    addToBackStack(null)
+                }
+            }
+        }
+
 
         return layout
     }
