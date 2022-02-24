@@ -7,7 +7,8 @@
     android:clipToPadding="false"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".ui.clan.ClanFragment">
+    tools:context=".ui.clan.ClanFragment"
+    android:background="@color/nvred_normal">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardProfile"
@@ -18,7 +19,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#f5f5f5">
 
             <ImageView
                 android:id="@+id/imageFilterView"
@@ -81,7 +83,8 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="16dp"
         android:text="Call for Help"
-        android:id="@+id/btn_request_help"/>
+        android:id="@+id/btn_request_help"
+        android:backgroundTint="@color/black"/>
 
 
     <com.google.android.material.card.MaterialCardView
@@ -92,12 +95,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:background="#f5f5f5">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Clan leaderboard"
+                android:text="Clan Leaderboard"
                 android:textAppearance="?attr/textAppearanceHeadline6" />
 
 
@@ -181,12 +185,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:background="#f5f5f5">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Clan leaderboard"
+                android:text="Clan Leaderboard"
                 android:textAppearance="?attr/textAppearanceHeadline6" />
 
 
