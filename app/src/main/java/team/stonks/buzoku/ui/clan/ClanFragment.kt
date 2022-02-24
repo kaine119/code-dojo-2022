@@ -1,12 +1,15 @@
 package team.stonks.buzoku.ui.clan
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import team.stonks.buzoku.R
+import team.stonks.buzoku.ui.requestForHelp.RequestForHelpActivity
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -39,6 +42,13 @@ class ClanFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         layout = inflater.inflate(R.layout.fragment_clan, container, false)
+
+        // Launch activity for requestForHelp
+        // TODO: should this be an activity or a fragment?
+        layout?.findViewById<Button>(R.id.btn_request_help)?.setOnClickListener {
+            val intent = Intent(activity, RequestForHelpActivity::class.java)
+            startActivity(intent)
+        }
 
         // These TextViews can be programmatically changed before returning the view to be rendered
         val clanName: TextView? = layout?.findViewById(R.id.ClanName)

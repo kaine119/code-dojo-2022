@@ -79,7 +79,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="16dp"
-        android:text="Call for Help" />
+        android:text="Call for Help"
+        android:id="@+id/btn_request_help"/>
 
 
     <com.google.android.material.card.MaterialCardView
