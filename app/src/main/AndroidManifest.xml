@@ -11,7 +11,8 @@
         android:theme="@style/Theme.Buzoku">
         <activity
             android:name=".ui.requestForHelp.RequestForHelpActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/title_activity_request_for_help"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

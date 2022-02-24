@@ -15,4 +15,5 @@
     <string name="pickup_my_location">At my location</string>
     <string name="pickup_halfway">Halfway</string>
     <string name="pickup_their_location">At helper\'s location</string>
+    <string name="title_activity_request_for_help">Request for help</string>
 </resources>
