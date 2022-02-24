@@ -2,6 +2,7 @@ package team.stonks.buzoku.ui.clan
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -70,6 +71,10 @@ class ClanFragment : Fragment() {
             clanName?.text = it.name
             clanPosition?.text = "#1 in Singapore"
             clanMemberCount?.text = "${it.numberOfMembers} members"
+        }
+
+        ClanService().getAllClans( requireContext()) {
+            Log.d("String","no. 1 clan in SG: ${it[0]}")
         }
 
         val clanLeaderboardTitle: TextView? = layout?.findViewById(R.id.txtClanLeaderboardTitle)

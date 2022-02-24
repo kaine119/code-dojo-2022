@@ -41,4 +41,29 @@ class ClanService {
         queue.add(request)
 
     }
+
+    fun getAllClans(context: Context, callback: (ArrayList<Clan>) -> Unit) {
+
+        val queue = Volley.newRequestQueue(context)
+        val url = "https://ninja-van-stonks.uc.r.appspot.com/calc_all_clan_scores/"
+        val request = JsonObjectRequest(
+            Request.Method.GET, url, null,
+            { response ->
+                val members = response.getJSONObject("sorted_clan_dict")
+                var allClans = arrayListOf<Clan>()
+                val memberKeys = members.keys()
+                for (key in memberKeys) {
+                    val name = members.get(key).toString()
+                    allClans.add(Clan(name, key.toDouble()))
+                }
+                callback(allClans)
+                Log.e("DEBUG", "CLAN $allClans $memberKeys")
+            },
+            { error ->
+                error.printStackTrace()
+            }
+        )
+        queue.add(request)
+
+    }
 }
