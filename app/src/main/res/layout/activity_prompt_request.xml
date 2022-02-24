@@ -3,9 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.leaderboard.LeaderboardFragment"
+    tools:context=".ui.promptHelpRequest.PromptHelpRequestActivity"
     android:orientation="vertical"
     android:padding="10dp">
+
+    <TextView
+        android:id="@+id/requestPromptTitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/loading"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

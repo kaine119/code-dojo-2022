@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "440298221290",
+    "firebase_url": "https://ninja-van-stonks-default-rtdb.firebaseio.com",
+    "project_id": "ninja-van-stonks",
+    "storage_bucket": "ninja-van-stonks.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:440298221290:android:31a187e4fd370aab737193",
+        "android_client_info": {
+          "package_name": "team.stonks.buzoku"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "440298221290-e06gpamflk9ota24l5698e1rph4tis9u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMNKP85lG6UGb2iuB7ZZJDj2nnzUF7kpo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "440298221290-e06gpamflk9ota24l5698e1rph4tis9u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
