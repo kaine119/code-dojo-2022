@@ -22,7 +22,7 @@ import kotlin.math.roundToInt
 private const val ARG_LEADERBOARD_NAME = "leaderboardName"
 private const val ARG_ENTRIES = "entries"
 
-class LeaderboardAdapter(val entries: List<Pair<Float, String>>) :
+class LeaderboardAdapter(val entries: List<Pair<Double, String>>) :
     RecyclerView.Adapter<LeaderboardAdapter.ViewHolder>() {
 
 
@@ -42,7 +42,7 @@ class LeaderboardAdapter(val entries: List<Pair<Float, String>>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.txtPosition.text = (position + 1).toString()
         holder.txtName.text = entries[position].second
-        holder.txtScore.text = entries[position].first.roundToInt().toString()
+        holder.txtScore.text = entries[position].first.toString()
         holder.icnMedal.setImageResource(when (position) {
             0 -> R.drawable.bookmark_gold
             1 -> R.drawable.bookmark_silver
@@ -63,13 +63,13 @@ class LeaderboardAdapter(val entries: List<Pair<Float, String>>) :
 class LeaderboardFragment : Fragment() {
     // TODO: Pass the items of the leaderboard down too
     private var leaderboardName: String? = null
-    private lateinit var entries: List<Pair<Float, String>>
+    private lateinit var entries: List<Pair<Double, String>>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             leaderboardName = it.getString(ARG_LEADERBOARD_NAME)
-            val type = object : TypeToken<List<Pair<Float, String>>>() {}.type
+            val type = object : TypeToken<List<Pair<Double, String>>>() {}.type
             entries = Gson().fromJson(it.getString(ARG_ENTRIES), type)
         }
         sharedElementEnterTransition = MaterialContainerTransform().apply {
@@ -105,7 +105,7 @@ class LeaderboardFragment : Fragment() {
          * @return A new instance of fragment LeaderboardFragment.
          */
         @JvmStatic
-        fun newInstance(leaderboardName: String, entries: List<Pair<Float, String>>) =
+        fun newInstance(leaderboardName: String, entries: List<Pair<Double, String>>) =
             LeaderboardFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_LEADERBOARD_NAME, leaderboardName)

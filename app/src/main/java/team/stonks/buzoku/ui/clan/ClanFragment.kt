@@ -8,24 +8,47 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.commit
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.transition.MaterialElevationScale
 import team.stonks.buzoku.R
 import team.stonks.buzoku.ui.leaderboard.LeaderboardFragment
 import team.stonks.buzoku.ui.requestForHelp.RequestForHelpActivity
 
+class SmallLeaderboardAdapter(val entries: List<String>) :
+    RecyclerView.Adapter<SmallLeaderboardAdapter.ViewHolder>() {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val txtPosition: TextView = itemView.findViewById(R.id.txtLeaderboardPositionSmall)
+        val icnMedal: ImageView = itemView.findViewById(R.id.icnLeaderboardMedalSmall)
+        val txtName: TextView = itemView.findViewById(R.id.txtLeaderboardNameSmall)
+    }
 
-// Instantiate the RequestQueue.
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        val layout = inflater.inflate(R.layout.leaderboard_entry_small, parent, false)
+        return ViewHolder(layout)
+    }
 
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.txtPosition.text = (position + 1).toString()
+        holder.txtName.text = entries[position]
+        holder.icnMedal.setImageResource(
+            when (position) {
+                0 -> R.drawable.bookmark_gold
+                1 -> R.drawable.bookmark_silver
+                2 -> R.drawable.bookmark_bronze
+                else -> R.drawable.ic_baseline_bookmark_24
+            }
+        )
+    }
 
-// Request a string response from the provided URL.
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+    override fun getItemCount(): Int = entries.size
+}
 
 /**
  * A simple [Fragment] subclass.
@@ -33,18 +56,11 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class ClanFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
     var layout: View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
@@ -71,60 +87,78 @@ class ClanFragment : Fragment() {
             clanName?.text = it.name
             clanPosition?.text = "#1 in Singapore"
             clanMemberCount?.text = "${it.numberOfMembers} members"
-        }
 
-        ClanService().getAllClans( requireContext()) {
-            Log.d("String","no. 1 clan in SG: ${it[0]}")
-        }
+            val clanLeaderboard = it.members.map { clanMember ->
+                Pair(clanMember.points.toDouble(), clanMember.firstName)
+            }.sortedBy { entry -> entry.first }
 
-        val clanLeaderboardTitle: TextView? = layout?.findViewById(R.id.txtClanLeaderboardTitle)
-        val clanLeaderboardCard: MaterialCardView? = layout?.findViewById(R.id.cardClanLeaderboard)
-        val countryLeaderboardTitle: TextView? = layout?.findViewById(R.id.txtCountryLeaderboardTitle)
-        val countryLeaderboardCard: MaterialCardView? = layout?.findViewById(R.id.cardCountryLeaderboard)
+            val clanLeaderboardCard: MaterialCardView? =
+                layout?.findViewById(R.id.cardClanLeaderboard)
 
-        if (clanLeaderboardTitle != null && clanLeaderboardCard != null) {
-            clanLeaderboardCard.setOnClickListener {
-                val fragment = LeaderboardFragment.newInstance("Your Clan", listOf(Pair(89.0f, "Europe")))
+            clanLeaderboardCard?.setOnClickListener {
+                val fragment =
+                    LeaderboardFragment.newInstance("Your Clan", clanLeaderboard)
                 parentFragmentManager.commit {
-//                    addSharedElement(clanLeaderboardTitle, "leaderboardTitle")
                     replace(R.id.nav_host_fragment_content_main, fragment)
                     addToBackStack(null)
                 }
             }
+
+            val smallClanLeaderboard = clanLeaderboard
+                .sortedBy { it.first }
+                .reversed()
+                .map { it.second }
+                .take(3)
+
+            val smallClanAdapter = SmallLeaderboardAdapter(smallClanLeaderboard)
+            layout?.findViewById<RecyclerView>(R.id.clanLeaderboard)?.apply {
+                setHasFixedSize(true)
+                layoutManager = LinearLayoutManager(context)
+                adapter = smallClanAdapter
+            }
         }
 
-        if (countryLeaderboardTitle != null && countryLeaderboardCard != null) {
-            countryLeaderboardCard.setOnClickListener {
-                val fragment = LeaderboardFragment.newInstance("Clans in Singapore", listOf(Pair(89.0f, "Europe")))
+        ClanService().getAllClans(requireContext()) {
+
+            val countryLeaderboard = it.map { clan ->
+                Pair(clan.clanScore, clan.name)
+            }.sortedBy { entry -> entry.first }
+
+            val countryLeaderboardCard: MaterialCardView? =
+                layout?.findViewById(R.id.cardCountryLeaderboard)
+
+            countryLeaderboardCard?.setOnClickListener {
+                val fragment =
+                    LeaderboardFragment.newInstance("Clans in Singapore", countryLeaderboard)
                 parentFragmentManager.commit {
-//                    addSharedElement(countryLeaderboardTitle, "countryLeaderboardTitle")
                     replace(R.id.nav_host_fragment_content_main, fragment)
                     addToBackStack(null)
                 }
             }
+
+            val smallCountryLeaderboard = countryLeaderboard
+                .sortedBy { it.first }
+                .reversed()
+                .map { it.second }
+                .take(3)
+
+            val smallCountryAdapter = SmallLeaderboardAdapter(smallCountryLeaderboard)
+
+            layout?.findViewById<RecyclerView>(R.id.countryLeaderboard)?.apply {
+                setHasFixedSize(true)
+                layoutManager = LinearLayoutManager(context)
+                adapter = smallCountryAdapter
+            }
+
+
         }
 
+
+        //region Leaderboard onClickListeners and RecyclerList Adaptors
+
+
+        //endregion
 
         return layout
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ClanFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ClanFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }

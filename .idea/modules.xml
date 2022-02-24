@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/code-dojo-2022.iml" filepath="$PROJECT_DIR$/.idea/code-dojo-2022.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Buzoku.iml" filepath="$PROJECT_DIR$/.idea/modules/Buzoku.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Buzoku.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Buzoku.app.iml" />
     </modules>
   </component>
 </project>
